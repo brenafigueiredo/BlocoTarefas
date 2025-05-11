@@ -1,0 +1,655 @@
+
+
+<head>
+        <style type="text/css">
+
+        
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+body {
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #c6d1a6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+}
+
+main {
+    display: flex;
+    width: 80%;
+    height: 90%;
+    background-color: #FAFAFA;
+    border-radius: 30px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+#menu {
+    width: 25%;
+    height: 100%;
+    background-color: #F0F0F0;
+    text-align: center;
+    padding: 10px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#content {
+    position: relative;
+    width: 100%;
+    padding: 20px;
+    text-align: left;
+    box-sizing: border-box;
+}
+
+#content h1, #content h2 {
+    color: #333333;
+    font-family: "Poppins", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    display: inline-flex;
+    gap: 20px;
+}
+
+#content h2 {
+    padding: 5px 7.5px;
+    border: 1px solid #F1F1F1;
+    border-radius: 10px;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+ul li {
+    margin-bottom: 10px;
+}
+
+ul li a {
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+}
+
+ul li.add-new a {
+    font-weight: bold;
+}
+
+#top-menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+#top-menu h2 {
+    font-family: "Poppins", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    margin: 0;
+    font-size: 18px;
+    color: #333333;
+    flex-shrink: 0;
+    display: inline;
+}
+
+#top-menu img {
+    width: 25px;
+    height: auto;
+    flex-shrink: 0;
+    display: inline;
+    cursor: pointer;
+}
+
+.divider {
+    border: none;
+    border-top: 1px solid #e2e2e2;
+    position: relative;
+    left: -10px;
+    width: calc(100% + 20px);
+}
+
+section #list, section #tasks {
+    margin: 40px 0px;
+}
+
+#tasks, #list, #others {
+    text-align: left;
+    padding-left: 15px;
+    margin: 0;
+}
+
+#tasks ul, #list ul, #others ul {
+    padding-left: 20px;
+}
+
+#tasks h2, #list h2, #others h2 {
+    color: #333333;
+    font-family: "Poppins", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    text-align: left;
+    margin-bottom: 10px;
+}
+
+#others {
+    margin-top: auto;
+    text-align: left;
+}
+
+#button-new-task {
+    margin-top: 50px;
+}
+
+#add-task {
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    color: #999999;
+    text-align: left;
+    border: 1px solid #e2e2e2;
+    border-radius: 10px;
+    background-color: #FAFAFA;
+    padding: 15px 10px;
+    width: 100%;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+#content-header h1, #content-header h2 {
+    margin-right: 20px;
+    font-size: 40px;
+}
+
+#tasks ul, #list ul, #others ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#tasks ul li, #list ul li, #others ul li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+#tasks ul li .icon, #list ul li .icon, #others ul li .icon {
+    width: 16px;
+    height: auto;
+    margin-right: 10px;
+}
+
+#tasks ul li a, #list ul li a, #others ul li a {
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+}
+
+#list ul li.add-new .icon {
+    width: 20px;
+}
+
+.hidden {
+    display: none;
+}
+
+#menu-icon-open {
+    position: absolute;
+    cursor: pointer;
+    top: 42px;
+    left: 30px;
+}
+
+#task-create {
+    width: 35%;
+    height: 100%;
+    background-color: #F0F0F0;
+    text-align: center;
+    padding: 10px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+#task-form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 15px;
+    margin: 0;
+    padding: 0;
+    align-items: flex-start;
+    flex-grow: 1;
+}
+
+#task-form div {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#task-title, #task-desc {
+    width: 100%;
+    padding: 12px;
+    font-size: 14px;
+    font-family: "Poppins", sans-serif;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #F9F9F9;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+#task-title:focus, #task-desc:focus {
+    outline: none;
+    border-color: #adadad;
+    box-shadow: 0 0 5px rgba(102, 102, 102, 0.3);
+}
+
+#task-desc {
+    resize: none;
+    height: 100px;
+}
+
+#task-create button {
+    margin-top: auto;
+    padding: 12px 20px;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    background-color: #333;
+    color: #FFF;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-align: center;
+}
+
+
+#task-create button:hover {
+    background-color: #555;
+}
+
+#taskCreate-icon-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+}
+
+#taskCreate-icon-close:hover {
+    opacity: 1;
+}
+
+#top-task-create {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+#task-form label {
+    font-family: "Poppins", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+    margin-right: 10px;
+}
+
+#task-form select, 
+#task-form input[type="date"] {
+    width: 70%;
+    padding: 8px 10px;
+    font-size: 14px;
+    font-family: "Poppins", sans-serif;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #F9F9F9;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+#task-form select:focus, 
+#task-form input[type="date"]:focus {
+    outline: none;
+    border-color: #adadad;
+    box-shadow: 0 0 5px rgba(102, 102, 102, 0.3);
+}
+
+
+
+#task-container {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.task-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 10px 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+}
+
+.task-item:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.task-item-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.task-item-left img {
+    width: 20px;
+    height: 20px;
+}
+
+.task-item-left .task-item-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.task-item-content h3 {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+}
+
+.task-item-content small {
+    font-size: 12px;
+    color: #666;
+}
+
+.task-item-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.task-item-right .task-item-tag {
+    font-size: 12px;
+    font-weight: 600;
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: #fff;
+    background-color: #007bff;
+    text-transform: capitalize;
+}
+
+.task-item-due-date {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 12px;
+    color: #999;
+}
+
+.task-item-due-date img {
+    width: 14px;
+    height: 14px;
+}
+
+#task-create-buttons {
+    display: flex;
+    justify-content: flex-end; /* Alinha os botões à direita */
+    gap: 15px; /* Espaçamento horizontal entre os botões */
+    margin-bottom: 10px; /* Espaçamento superior para separar do conteúdo acima */
+}
+
+#task-create-buttons button {
+    padding: 5px 20px;
+    font-size: 14px;
+    font-family: "Poppins", sans-serif;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Botão de excluir */
+#task-create-buttons #delete-task {
+    background-color: #33333300; /* Branco */
+    color: #333333; /* Texto escuro */
+    border: 1px solid #aaaaaa;
+}
+
+#task-create-buttons #delete-task:hover {
+    background-color: #00000015; /* Cinza claro ao passar o mouse */
+}
+
+/* Botão de salvar */
+#task-create-buttons #save-changes {
+    background-color: #948871; /* Amarelo */
+    color: #ffffff; /* Texto escuro */
+}
+
+#task-create-buttons #save-changes:hover {
+    background-color: #635b4d; /* Amarelo mais forte ao passar o mouse */
+}
+
+#confirm-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Fundo escuro semitransparente */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 300px;
+}
+
+.modal-content p {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.modal-buttons {
+    display: flex;
+    justify-content: center; /* Centraliza os botões */
+    gap: 10px; /* Reduz o espaço horizontal entre os botões */
+    margin-top: 20px; /* Espaçamento superior */
+}
+
+.modal-buttons button {
+    padding: 10px 20px;
+    font-size: 14px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Botão Confirmar */
+#confirm-delete {
+    background-color: #FF6B6B; /* Vermelho */
+    color: #fff;
+}
+
+#confirm-delete:hover {
+    background-color: #ff4d4d;
+}
+
+/* Botão Cancelar */
+#cancel-delete {
+    background-color: #ddd; /* Cinza claro */
+    color: #333;
+}
+
+#cancel-delete:hover {
+    background-color: #ccc;
+}
+</style>
+    </head>
+
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
+    <title>Lista de Tarefas</title>
+</head>
+<body>
+    <main>
+
+        <section id="menu">
+
+            <div id="top-menu">
+                <h2>Menu</h2>
+                <img id="menu-icon-close" src="./assets/menu.png" alt="Fechar Menu" width="25px">
+            </div>
+
+            <section id="tasks">
+                <h2>Tarefas</h2>
+                <ul>
+                    <li>
+                        <img src="./assets/double-arrow.svg" alt="Ícone" class="icon">
+                        <a href="#upcoming">Próximas</a>
+                    </li>
+                    <li>
+                        <img src="./assets/list.svg" alt="Ícone" class="icon">
+                        <a href="#today">Hoje</a>
+                    </li>
+                </ul>
+            </section>
+
+            <hr class="divider">
+
+            <section id="list">
+                <h2>Listas</h2>
+                <ul>
+                    <li>
+                        <img src="./assets/square.svg" alt="Ícone" class="icon">
+                        <a href="#personal">Pessoal</a>
+                    </li>
+                    <li>
+                        <img src="./assets/square2.svg" alt="Ícone" class="icon">
+                        <a href="#work">Trabalho</a>
+                    </li>
+                </ul>
+            </section>
+
+
+            <section id="others">
+                <ul>
+                    <li>
+                        <img src="./assets/logout.svg" alt="Ícone de sair" class="icon">
+                        <a href="#signout">Sair</a>
+                    </li>
+                </ul>
+            </section>
+
+
+        </section>
+
+        <div id="content">
+
+            <img id="menu-icon-open" src="./assets/menu.png" alt="Abrir Menu" width="25px" style="display: none;">
+
+            <div id="content-header">
+                <h1>Hoje</h1>
+                
+            </div>
+
+            <div id="button-new-task">
+                <button id="add-task">+ Adicionar Nova Tarefa</button>
+            </div>
+
+            <div id="task-container">
+                <!-- Novas tarefas serão adicionadas aqui -->
+            </div>
+
+        </div>
+
+        <div id="task-create" style="display: none;">
+
+            <div id="top-task-create">
+                <h2>Tarefa:</h2>
+                <img id="taskCreate-icon-close" src="./assets/close.svg" alt="Fechar Menu" width="25px">
+            </div>
+
+            <div id="task-form">
+                <input type="text" id="task-title" placeholder="Título da Tarefa">
+                <textarea id="task-desc" name="task-desc" placeholder="Descrição"></textarea>
+
+                <label for="choose-list">Lista:</label>
+                <select name="Lista" id="task-list">
+                    <option value="Pessoal" selected>Pessoal</option>
+                    <option value="Trabalho">Trabalho</option>
+                </select>
+
+
+
+                <label for="due-date">Prazo:</label>
+                <input type="date" id="due-date">
+            </div>
+
+            <button type="submit">Criar</button>
+
+        </div>
+
+        <div id="confirm-modal" style="display: none;">
+            <div class="modal-content">
+                <p>Tem certeza de que deseja excluir esta tarefa?</p>
+                <div class="modal-buttons">
+                    <button id="confirm-delete">Confirmar</button>
+                    <button id="cancel-delete">Cancelar</button>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <script src="./js/main.js"></script>
+</body>
+</html>
